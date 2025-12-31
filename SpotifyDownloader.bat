@@ -4,6 +4,15 @@ setlocal EnableExtensions
 cd /d "%~dp0"
 
 :: =========================================================
+::              DEPENDENCY CHECK (RUNTIME FETCH)
+:: =========================================================
+if not exist "libs" mkdir "libs"
+if not exist "libs\ffmpeg.exe" (
+    echo [INFO] FFmpeg not found. Downloading dependency...
+    powershell -NoProfile -Command "$u='https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-essentials.zip'; $z='ffmpeg.zip'; $t='libs\ffmpeg.exe'; [Net.ServicePointManager]::SecurityProtocol=[Net.SecurityProtocolType]::Tls12; (New-Object Net.WebClient).DownloadFile($u, $z); Add-Type -A System.IO.Compression.FileSystem; $zip=[IO.Compression.ZipFile]::OpenRead($PWD.Path+'\'+$z); $f=$zip.Entries|Where-Object FullName -like '*bin/ffmpeg.exe'|Select -First 1; [IO.Compression.ZipFileExtensions]::ExtractToFile($f, $PWD.Path+'\'+$t); $zip.Dispose(); Remove-Item $z"
+)
+
+:: =========================================================
 ::                 MODE DETECTION & LOGIC
 :: =========================================================
 

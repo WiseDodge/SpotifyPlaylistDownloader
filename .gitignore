@@ -10,6 +10,12 @@ installation/
 # Ignore temporary source files
 src/
 
+# Ignore dependencies and binaries
+libs/ffmpeg.exe
+ffmpeg.exe
+*.zip
+*.7z
+
 # Ignore system files
 .DS_Store
 Thumbs.db
