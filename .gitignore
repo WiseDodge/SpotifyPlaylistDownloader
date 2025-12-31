@@ -1,0 +1,15 @@
+# Ignore user downloads
+SpotifyDownloads/
+
+# Ignore generated config (let users generate their own)
+config.txt
+
+# Ignore backup/installation folders
+installation/
+
+# Ignore temporary source files
+src/
+
+# Ignore system files
+.DS_Store
+Thumbs.db
